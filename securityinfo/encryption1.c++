@@ -11,7 +11,7 @@ string encryiptionPassword(string password, int shift) {
         } else if (isupper(ch)) {
             encryptpassword += char((ch - 'A' + shift) % 26 + 'A');
         } else {
-            encryptpassword += ch;
+            encryptpassword += ch; // الاحتفاظ بالحروف الخاصة والفراغات بدون تغيير
         }
     }
     return encryptpassword;
@@ -38,24 +38,29 @@ string encryiptionPasswordKey(string password, string key) {
         } else if (isupper(password[i])) {
             encrypted += char((password[i] + key[i] - 2 * 'A') % 26 + 'A');
         } else {
-            encrypted += password[i];
+            encrypted += password[i]; // الاحتفاظ بالحروف الخاصة والفراغات بدون تغيير
         }
     }
     return encrypted;
 }
 
 // اختيار نوع التشفير
-void ChoiceEncrypt(string password, int shift, string key) {
+void ChoiceEncrypt() {
     cout << "Enter number you choose:" << endl;
     cout << "1. Shift Encryption" << endl;
     cout << "2. Key Encryption" << endl;
     int X;
     cin >> X;
     cin.ignore(); // لتجنب مشاكل قراءة النصوص
+
+    string password;
+    string key;
+    int shift;
+
     switch (X) {
         case 1: {
             cout << "Enter the password: ";
-            cin >> password;
+            getline(cin, password); // قراءة كلمة المرور مع دعم الفراغات
             cout << "Enter the value of shift: ";
             cin >> shift;
             string result = encryiptionPassword(password, shift);
@@ -64,9 +69,9 @@ void ChoiceEncrypt(string password, int shift, string key) {
         }
         case 2: {
             cout << "Enter the password: ";
-            cin >> password;
+            getline(cin, password); // قراءة كلمة المرور مع دعم الفراغات
             cout << "Enter the key: ";
-            cin >> key;
+            getline(cin, key); // قراءة المفتاح مع دعم الفراغات
             string result = encryiptionPasswordKey(password, key);
             cout << "Encrypted Password (Key): " << result << endl;
             break;
@@ -79,9 +84,6 @@ void ChoiceEncrypt(string password, int shift, string key) {
 
 // الدالة الرئيسية
 int main() {
-    string password;
-    string key;
-    int shift;
-    ChoiceEncrypt(password, shift, key);
+    ChoiceEncrypt();
     return 0;
 }
