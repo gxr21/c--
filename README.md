@@ -12,4 +12,5 @@ A collection of C++ codes designed for college-level students. This project incl
 - C++
 
 ## 📦 Installation
-git clone 
+- git clone https://github.com/gxr21/c--.git
+- cd c--
